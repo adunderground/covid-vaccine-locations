@@ -3,7 +3,8 @@
     <l-map
      v-model="zoom"
      v-model:zoom="zoom"
-     :center="[39.3189630108963, -76.61263639521701]">
+     :center="[39.3189630108963, -76.61263639521701]"
+     class="z-idx5">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
       <l-marker
        v-for="provider in providers"
@@ -12,11 +13,16 @@
       >
         <l-icon icon-url="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/openmoji/272/syringe_1f489.png" :icon-size="[46, 46]" />
         <l-popup>
-          <h3>{{ provider.attributes.name }}</h3>
+          <h2>{{ provider.attributes.name }}</h2>
           <hr>
           <p>
             <span style="font-weight:bold">{{ provider.attributes.fulladdr}}</span>
-            {{ provider.attributes.operationalhours}}
+            <span v-if="provider.attributes.operationalhours">
+              {{ provider.attributes.operationalhours}}
+            </span>
+            <span v-if="provider.attributes.scheduling_contact_phone" style="font-style:italic">
+              {{ provider.attributes.scheduling_contact_phone }}
+            </span>
           </p>
             <a v-if="provider.attributes.schedule_url"
             :href="provider.attributes.schedule_url" target="_blank">
@@ -25,6 +31,7 @@
         </l-popup>
       </l-marker>
     </l-map>
+    <footer-credits></footer-credits>
   </div>
 </template>
 
@@ -40,6 +47,8 @@ import { ref } from 'vue';
 import axios from 'axios';
 import { xyToLngLat } from '@arcgis/core/geometry/support/webMercatorUtils';
 
+import FooterCredits from './FooterCredits.vue';
+
 export default {
   name: 'Home',
   components: {
@@ -48,12 +57,14 @@ export default {
     LMarker,
     LTileLayer,
     LPopup,
+    FooterCredits,
   },
   methods: {
   },
   setup() {
-    const zoom = ref(9);
+    const zoom = ref(10);
     // const placesURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_Vaccination_Locations/FeatureServer/0/query?where=0%3D0&outFields=%2A&f=json';
+    // const placesURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_Vaccination_Locations/FeatureServer/1/query?where=0%3D0&outFields=%2A&f=json';
     const placesURL = 'https://services.arcgis.com/njFNhDsUCentVYJW/arcgis/rest/services/MD_Vaccination_Locations/FeatureServer/3/query?where=0%3D0&outFields=%2A&f=json';
     const providers = [];
     async function getProviders() {
@@ -83,7 +94,14 @@ export default {
 
 <style lang="scss" scoped>
 .home {
+  z-index: 8;
   width: 100%;
   height: 100%;
+}
+.z-idx5{
+  z-index: 5;
+}
+span{
+  display: block;
 }
 </style>
