@@ -7,7 +7,7 @@
       class="credits__github credits__link">
       &nbsp; &nbsp;
     </a>
-    inspired by
+    inspired by CJ
     <a href="https://coding.garden/" target="_blank" class="credits__cg credits__link">
       &nbsp; &nbsp; &nbsp;
     </a>
@@ -24,7 +24,7 @@
   right: 2.5%;
 
   font-family: 'B612', sans-serif;
-  background-color: #3e3e3ea1;
+  background-color: #e7e7e7a1;
   padding: 0.25rem 0.5rem;
   font-size: 0.95rem;
   border-radius: 2.5px;
@@ -43,11 +43,11 @@
   &__cg {
     font-size: 1.25rem;
     -webkit-mask-image: url("../assets/codinggarden.svg");
-    // margin-right: -0.75rem;
+    margin-left: -0.4rem;
   }
   &__github,
   &__cg {
-    background: #fff;
+    background: #000;
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
