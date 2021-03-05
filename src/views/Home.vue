@@ -70,7 +70,7 @@ export default {
     },
   },
   setup() {
-    const zoom = ref(10);
+    const zoom = ref(12);
     return {
       zoom,
     };

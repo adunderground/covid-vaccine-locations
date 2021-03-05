@@ -4,7 +4,8 @@
     <a
       href="https://github.com/adunderground"
       target="_blank"
-      class="credits__github credits__link">
+      class="credits__github credits__link"
+    >
       &nbsp; &nbsp;
     </a>
     inspired by CJ
@@ -15,7 +16,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import url('https://fonts.googleapis.com/css2?family=B612&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=B612&display=swap");
 
 .credits {
   z-index: 11;
@@ -23,7 +24,7 @@
   bottom: 1%;
   right: 2.5%;
 
-  font-family: 'B612', sans-serif;
+  font-family: "B612", sans-serif;
   background-color: #e7e7e7a1;
   padding: 0.25rem 0.5rem;
   font-size: 0.95rem;
@@ -45,16 +46,24 @@
     -webkit-mask-image: url("../assets/codinggarden.svg");
     margin-left: -0.4rem;
   }
+
   &__github,
   &__cg {
     background: #000;
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
-
     &:hover {
       background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
     }
   }
+  // TEXT GRADIENT
+  // &__text {
+  //   display: inline;
+  //   font-weight: bold;
+  //   background: -webkit-linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  //   -webkit-background-clip: text;
+  //   -webkit-text-fill-color: transparent;
+  // }
 }
 </style>
