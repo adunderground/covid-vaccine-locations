@@ -46,6 +46,8 @@ router.beforeEach((to, from, next) => {
   // slice(1) is used to make '/MD' into 'MD'
   const payload = createPayload(to.fullPath.slice(1));
   store.dispatch('fetchProviders', payload);
+  // set loading status back to true upon each route change
+  store.commit('setLoadingStatus', true);
   next();
 });
 

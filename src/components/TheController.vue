@@ -2,10 +2,13 @@
   <div class="controller">
     <router-link class="controller__link--MD" to="/MD">Maryland Locations</router-link>
     <router-link class="controller__link--NYC" to="/NYC">New York City Locations</router-link>
-    <router-link class="controller__link--VA" to="/VA">
+    <router-link class="controller__link--VA" to="/VA"
+    aria-label="Virginia locations are unavailable.
+    Unfortunately this state did not make them public.">
       Virginia Locations</router-link
     >
-    <router-link class="controller__link--DC" to="/DC">
+    <router-link class="controller__link--DC" to="/DC"
+    aria-label="D.C. locations are unavailable. Unfortunately D.C. did not make them public">
       Washington D.C. Locations</router-link
     >
   </div>

@@ -1,10 +1,12 @@
 <template>
   <div class="home">
     <the-controller></the-controller>
+    <loading-spinner  v-if="isLoading" ></loading-spinner>
     <l-map
-     v-model="zoom"
-     v-model:zoom="zoom"
+     :zoom="zoom"
      :center="center"
+     @ready="setLoading(false)"
+     @update:center="setLoading(false)"
      class="z-idx5">
       <l-tile-layer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"></l-tile-layer>
       <l-marker
@@ -44,8 +46,10 @@ import {
   LTileLayer,
   LPopup,
 } from '@vue-leaflet/vue-leaflet';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { useStore } from 'vuex';
 import TheController from '../components/TheController.vue';
+import LoadingSpinner from '../components/LoadingSpinner.vue';
 import FooterCredits from './FooterCredits.vue';
 
 export default {
@@ -58,21 +62,29 @@ export default {
     LPopup,
     FooterCredits,
     TheController,
-  },
-  methods: {
-  },
-  computed: {
-    center() {
-      return this.$store.getters.center;
-    },
-    providers() {
-      return this.$store.getters.providers;
-    },
+    LoadingSpinner,
   },
   setup() {
     const zoom = ref(12);
+
+    const store = useStore();
+
+    const isLoading = computed(() => store.getters.loadingStatus);
+    const center = computed(() => store.getters.center);
+    const providers = computed(() => store.getters.providers);
+
+    function setLoading(status) {
+      store.commit('setLoadingStatus', status);
+    }
+
+    document.title = 'COVID Vaccine Locator';
+
     return {
       zoom,
+      isLoading,
+      center,
+      providers,
+      setLoading,
     };
   },
 };
