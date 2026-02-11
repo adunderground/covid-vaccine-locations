@@ -14,7 +14,7 @@
       :key="provider.attributes.fulladdr"
       :lat-lng="[provider.attributes.Latitude, provider.attributes.Longitude]"
       >
-        <l-icon icon-url="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/openmoji/272/syringe_1f489.png" :icon-size="[46, 46]" />
+        <l-icon icon-url="https://www.svgrepo.com/show/312483/location-indicator-red.svg" :icon-size="[46, 46]" />
         <l-popup>
           <h2>{{ provider.attributes.FacilityName }}</h2>
           <hr>
